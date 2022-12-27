@@ -7,7 +7,7 @@ import com.vuxiii.LR.LRParser;
 import com.vuxiii.LR.ParseTable;
 import com.vuxiii.LR.Records.NonTerminal;
 import com.vuxiii.LR.Records.Terminal;
-import com.vuxiii.LR.Records.Token;
+import com.vuxiii.LR.Records.ASTToken;
 
 /**
  * Hello world!

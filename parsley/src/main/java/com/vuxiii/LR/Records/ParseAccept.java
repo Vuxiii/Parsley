@@ -11,15 +11,15 @@ public class ParseAccept implements ParseAction {
 
     public final LRRule rule;
 
-    private final Function<List<Token>, Token> reduceFunction;
+    private final Function<List<ASTToken>, ASTToken> reduceFunction;
 
-    public ParseAccept( int id, LRRule rule, Function<List<Token>, Token> reduceFunction ) {
+    public ParseAccept( int id, LRRule rule, Function<List<ASTToken>, ASTToken> reduceFunction ) {
         this.id = id;
         this.rule = rule;
         this.reduceFunction = reduceFunction;
     }
 
-    public Token reduce( List<Token> tokenParams ) {
+    public ASTToken reduce( List<ASTToken> tokenParams ) {
         return reduceFunction.apply( tokenParams );
     }
 

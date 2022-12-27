@@ -1,10 +1,10 @@
 package com.vuxiii;
 
 import com.vuxiii.LR.Records.Term;
-import com.vuxiii.LR.Records.Token;
+import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Visitor.VisitorBase;
 
-public class Tok implements Token {
+public class Tok implements ASTToken {
 
     @Override
     public Term getTerm() {

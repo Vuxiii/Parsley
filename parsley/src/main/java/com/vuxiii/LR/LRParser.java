@@ -20,7 +20,7 @@ import com.vuxiii.LR.Records.ParserState;
 import com.vuxiii.LR.Records.Rule;
 import com.vuxiii.LR.Records.Term;
 import com.vuxiii.LR.Records.Terminal;
-import com.vuxiii.LR.Records.Token;
+import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Utils.Utils;
 
 public class LRParser{

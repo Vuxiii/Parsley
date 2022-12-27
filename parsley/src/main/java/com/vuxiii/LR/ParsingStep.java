@@ -12,7 +12,7 @@ import com.vuxiii.LR.Records.ParseGoto;
 import com.vuxiii.LR.Records.ParseReduce;
 import com.vuxiii.LR.Records.ParseShift;
 import com.vuxiii.LR.Records.ParserState;
-import com.vuxiii.LR.Records.Token;
+import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Utils.*;
 
 public class ParsingStep {
@@ -20,9 +20,9 @@ public class ParsingStep {
     public static int count = 0;
     private int id;
 
-    private final LinkedList<Token> input;
+    private final LinkedList<ASTToken> input;
 
-    private final LinkedList<Token> tempInput;
+    private final LinkedList<ASTToken> tempInput;
 
     private final LinkedList<ParserState> stack;
 
@@ -30,7 +30,7 @@ public class ParsingStep {
 
     private final ParseTable table;
 
-    private Token output = null;
+    private ASTToken output = null;
 
     public boolean isFinished = false;
 
@@ -42,7 +42,7 @@ public class ParsingStep {
      * @param reduceStack The list of reduce that have been used
      * @param table The ParsingTable for the given Grammar
      */
-    public ParsingStep( List<Token> input, List<Token> tempInput, List<ParserState> stack, LinkedList<LRRule> reduceStack, ParseTable table ) {
+    public ParsingStep( List<ASTToken> input, List<ASTToken> tempInput, List<ParserState> stack, LinkedList<LRRule> reduceStack, ParseTable table ) {
         this.stack = new LinkedList<>();
         this.input = new LinkedList<>();
         this.reduceStack = new LinkedList<>();
@@ -62,7 +62,7 @@ public class ParsingStep {
      * When parsing is done, this method returns the result
      * @return The Token computed from the parsingsteps
      */
-    public Token getResult() {
+    public ASTToken getResult() {
         return inputPeek();
     }
 
@@ -77,7 +77,7 @@ public class ParsingStep {
         // }
         ParserState currentState = stackPeek();
 
-        Token element = inputPeek();
+        ASTToken element = inputPeek();
 
         
         // if ( showSteps )
@@ -133,7 +133,7 @@ public class ParsingStep {
             int size = act.rule.size();
             // Utils.log( "Rule size is: " + size );
 
-            LinkedList<Token> tokenParams = new LinkedList<>();
+            LinkedList<ASTToken> tokenParams = new LinkedList<>();
             for ( int i = 0; i < size; ++i ) {
                 nextStep.stackPop();
                 tokenParams.addFirst( nextStep.tempInput.removeLast() );
@@ -159,7 +159,7 @@ public class ParsingStep {
             // Utils.log( "Rule size is: " + size );
             // System.out.println( nextStep.tempInput.size() );
             // System.out.println( nextStep.tempInput );
-            LinkedList<Token> tokenParams = new LinkedList<>();
+            LinkedList<ASTToken> tokenParams = new LinkedList<>();
             for ( int i = 0; i < size; ++i ) {
                 nextStep.stackPop();
                 tokenParams.addFirst( nextStep.tempInput.removeLast() );
@@ -192,19 +192,19 @@ public class ParsingStep {
         return null;
     }
 
-    private Token tempInputPop() {
+    private ASTToken tempInputPop() {
         return tempInput.removeFirst();
     }
 
-    private Token tempInputPeek() {
+    private ASTToken tempInputPeek() {
         return tempInput.peekFirst();
     }
 
-    private Token inputPop() {
+    private ASTToken inputPop() {
         return input.removeFirst();
     }
 
-    private Token inputPeek() {
+    private ASTToken inputPeek() {
         return input.peekFirst();
     }
 

@@ -48,7 +48,7 @@ public class ParserState {
     }
 
 
-    public ParserState eat( Token t ) {
+    public ParserState eat( ASTToken t ) {
         // System.out.println( current_state.id );
         // System.out.println( accepter.keySet() );
         // System.out.println( isError );

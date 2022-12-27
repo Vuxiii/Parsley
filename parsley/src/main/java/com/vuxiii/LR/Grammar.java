@@ -17,7 +17,7 @@ import com.vuxiii.LR.Records.NonTerminal;
 import com.vuxiii.LR.Records.Rule;
 import com.vuxiii.LR.Records.Term;
 import com.vuxiii.LR.Records.Terminal;
-import com.vuxiii.LR.Records.Token;
+import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Utils.Utils;
 
 
@@ -29,7 +29,7 @@ public class Grammar {
     // Map<String, Term> terms;
     List<LRState> state_cache;
 
-    Map< Integer, Function<List<Token>, Token> > reduceFunctions;
+    Map< Integer, Function<List<ASTToken>, ASTToken> > reduceFunctions;
 
     public Grammar() {
         LRRules = new HashMap<>();
@@ -232,15 +232,15 @@ public class Grammar {
         return s;
     }
 
-    private void addReduceFunction( int ruleID, Function<List<Token>, Token> func ) {
+    private void addReduceFunction( int ruleID, Function<List<ASTToken>, ASTToken> func ) {
         reduceFunctions.put( ruleID, func );
     }
 
-    public Function<List<Token>, Token> getReduceFunction( int ruleID ) {
+    public Function<List<ASTToken>, ASTToken> getReduceFunction( int ruleID ) {
         return reduceFunctions.get( ruleID );
     }
 
-    public void addRuleWithReduceFunction( NonTerminal key, List<Term> rule, Function<List<Token>, Token> func ) {
+    public void addRuleWithReduceFunction( NonTerminal key, List<Term> rule, Function<List<ASTToken>, ASTToken> func ) {
         addReduceFunction( add_rule(key, rule).id, func );
     }
 

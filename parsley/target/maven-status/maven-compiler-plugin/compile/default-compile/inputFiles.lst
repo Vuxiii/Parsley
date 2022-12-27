@@ -8,9 +8,9 @@
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Visitor/VisitorAcceptor.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Rule.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Tok.java
+/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ASTToken.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/LRRuleIdentifier.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/ParsingStep.java
-/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Token.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/LRState.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ParseGoto.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/App.java
