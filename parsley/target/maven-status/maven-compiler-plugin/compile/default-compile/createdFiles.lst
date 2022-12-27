@@ -1,6 +1,7 @@
 com/vuxiii/LR/Records/ParserStateError.class
 com/vuxiii/LR/Records/LRRule.class
 com/vuxiii/LR/Records/ParseError.class
+com/vuxiii/Visitor/VisitorBase.class
 com/vuxiii/LR/Records/Term.class
 com/vuxiii/LR/Grammar.class
 com/vuxiii/LR/Records/ParseGoto.class
@@ -10,6 +11,7 @@ com/vuxiii/LR/ParsingStep.class
 com/vuxiii/LR/Records/NonTerminal.class
 com/vuxiii/LR/Records/Rule.class
 com/vuxiii/LR/Records/ParseReduce.class
+com/vuxiii/Visitor/VisitorAcceptor.class
 com/vuxiii/LR/Records/ParseAccept.class
 com/vuxiii/LR/Records/Token.class
 com/vuxiii/LR/Records/ParserState.class
@@ -18,4 +20,5 @@ com/vuxiii/LR/Records/Terminal.class
 com/vuxiii/LR/Records/ParseShift.class
 com/vuxiii/LR/LRParser.class
 com/vuxiii/LR/Records/LRState.class
+com/vuxiii/Tok.class
 com/vuxiii/LR/ParseTable.class

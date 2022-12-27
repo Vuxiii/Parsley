@@ -1,5 +1,7 @@
 package com.vuxiii.LR.Records;
 
-public interface Token {
+import com.vuxiii.Visitor.VisitorAcceptor;
+
+public interface Token extends VisitorAcceptor {
     public Term getTerm();
 }

@@ -5,7 +5,9 @@
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ParseShift.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Terminal.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Grammar.java
+/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Visitor/VisitorAcceptor.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Rule.java
+/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Tok.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/LRRuleIdentifier.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/ParsingStep.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Token.java
@@ -15,6 +17,7 @@
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/LRParser.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/LRRule.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Term.java
+/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Visitor/VisitorBase.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ParserStateError.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/NonTerminal.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ParseAction.java

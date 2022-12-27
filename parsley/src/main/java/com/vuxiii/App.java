@@ -24,6 +24,10 @@ public final class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
+        Grammar g = new Grammar();
+        NonTerminal n = new NonTerminal("n");
+        g.addRuleWithReduceFunction(n, List.of( n ), (ns) -> new Tok() );
+        
     }
 
 }
