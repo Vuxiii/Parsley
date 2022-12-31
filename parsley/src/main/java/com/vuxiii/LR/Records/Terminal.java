@@ -15,6 +15,11 @@ public class Terminal extends Term {
         super( n );
     }
 
+    public Terminal( String n, boolean is_EOP ) {
+        super( n );
+        this.is_EOP = is_EOP;
+    }
+
     // public boolean equals( Object other ) {
     //     if ( other == null ) return false;
     //     if ( !(other instanceof Terminal) ) return false;

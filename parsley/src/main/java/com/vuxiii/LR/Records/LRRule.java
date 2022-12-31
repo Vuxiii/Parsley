@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import com.vuxiii.Utils.*;
 
 public class LRRule extends Rule {
-    private static int count = 0;
+    public static int count = 0;
     public final int id;
     public final int dot;
     public final NonTerminal X;

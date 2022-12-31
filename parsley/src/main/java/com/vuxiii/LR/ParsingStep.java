@@ -16,7 +16,7 @@ import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Utils.*;
 
 public class ParsingStep {
-    public static boolean showSteps = false;
+    public static boolean showSteps = true;
     public static int count = 0;
     private int id;
 
@@ -79,7 +79,11 @@ public class ParsingStep {
 
         ASTToken element = inputPeek();
 
-        
+        // if ( element == null ) {
+        //     System.out.println( "Wtf??" );
+        //     System.out.println( this );
+        //     System.exit(-1);
+        // }
         // if ( showSteps )
         //     System.out.println( currentState );
         // if ( showSteps )

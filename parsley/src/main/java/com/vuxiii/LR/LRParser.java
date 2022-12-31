@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -26,7 +27,7 @@ import com.vuxiii.Utils.Utils;
 public class LRParser{
     
 
-    public static  ParseTable parse( Grammar g, NonTerminal start ) {
+    public static ParseTable parse( Grammar g, NonTerminal start ) {
 
         LRState start_state = _computeState( g, start );
         
@@ -53,9 +54,31 @@ public class LRParser{
 
         System.out.println( table );
 
+        ParsingStep.count = 0; // Reset
+        LRRule.count = 0;
+        LRState.count = 0;
+        Term.terms = new HashMap<>();
         // return start_state;
         return table;
 
+    }
+
+    public static ASTToken getAST( ParseTable table, List<ASTToken> tokens ) {
+        List<ParserState> stack = new LinkedList<>();
+        stack.add( table.getStartState() );
+        ParsingStep currentStep = new ParsingStep(tokens, new LinkedList<>(), stack, new LinkedList<>(), table );
+        // Scanner sc = new Scanner( System.in );
+        while ( !currentStep.isFinished ) {
+            // Utils.log( currentStep );
+            // sc.next();
+            currentStep = currentStep.step();
+        }
+        // sc.close();
+        // System.out.println( currentStep );
+        ASTToken AST = currentStep.getResult();
+
+        // System.out.println( "Final result is: " + AST );
+        return AST;
     }
 
     public static  ParseTable getParserTable( Grammar  g, LRState start ) {
