@@ -89,7 +89,7 @@ public class ParsingStep {
         //     System.out.println( table.states.get( currentState.current_state.id ));
 
         if ( Settings.showParsingSteps )
-            System.out.println( this );
+            Utils.log( this );
 
         // Utils.log( element + " -> term: " + element.getTerm() );
 

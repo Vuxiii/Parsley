@@ -31,7 +31,8 @@ public class LRParser{
 
         LRState start_state = _computeState( g, start );
         
-        _printStates( g, start_state, new HashSet<>() );
+        if ( Settings.showParsingSteps )
+            _printStates( g, start_state, new HashSet<>() );
 
         ParseTable table = getParserTable( g, start_state );
 
