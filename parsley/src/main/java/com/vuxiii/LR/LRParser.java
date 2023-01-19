@@ -50,9 +50,11 @@ public class LRParser{
 
         table.compile();
 
-        System.out.println( g );
+        if ( Settings.showGrammar )
+            System.out.println( g );
 
-        System.out.println( table );
+        if ( Settings.showParsingTable )
+            System.out.println( table );
 
         ParsingStep.count = 0; // Reset
         LRRule.count = 0;

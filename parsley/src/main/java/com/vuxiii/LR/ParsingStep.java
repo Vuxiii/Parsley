@@ -16,7 +16,6 @@ import com.vuxiii.LR.Records.ASTToken;
 import com.vuxiii.Utils.*;
 
 public class ParsingStep {
-    public static boolean showSteps = true;
     public static int count = 0;
     private int id;
 
@@ -84,22 +83,22 @@ public class ParsingStep {
         //     System.out.println( this );
         //     System.exit(-1);
         // }
-        // if ( showSteps )
+        // if ( Settings.showParsingSteps )
         //     System.out.println( currentState );
-        // if ( showSteps )
+        // if ( Settings.showParsingSteps )
         //     System.out.println( table.states.get( currentState.current_state.id ));
 
-        if ( showSteps )
+        if ( Settings.showParsingSteps )
             System.out.println( this );
 
         // Utils.log( element + " -> term: " + element.getTerm() );
 
         ParseAction action = table.getAction( currentState.current_state.id, element.getTerm() );
-        if ( showSteps )
+        if ( Settings.showParsingSteps )
             Utils.log( action );
 
         if ( action instanceof ParseShift ) {
-            if ( showSteps )
+            if ( Settings.showParsingSteps )
                 Utils.log( "In Shift" );
             ParseShift act = (ParseShift) action;
             // Utils.log( "id: " + act.id() );

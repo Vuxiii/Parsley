@@ -26,7 +26,7 @@ public abstract class VisitorBase {
                 try {
                     m.invoke( this, t );
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    System.out.println( "We failed trying to visit " + t );
+                    System.out.println( "--[[ Visitor Pattern Failure ]]--\n\tWe failed trying to visit " + t );
                     e.printStackTrace();
                 }
             }
