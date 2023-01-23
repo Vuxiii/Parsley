@@ -42,6 +42,14 @@
     </dependency>
   </dependencies>
   
+
+  <distributionManagement>
+  <repository>
+    <id>github</id>
+    <name>My Parser-Generator implementation inspired by the Bison-tool</name>
+    <url>https://maven.pkg.github.com/vuxiii/Parsley</url>
+  </repository>
+
   <build>
     <plugins>
       <plugin>
