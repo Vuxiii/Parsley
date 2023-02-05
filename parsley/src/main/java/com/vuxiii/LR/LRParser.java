@@ -1,18 +1,11 @@
 package com.vuxiii.LR;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.function.Function;
-
-// import com.vuxiii.Utils.*;
-import com.vuxiii.LR.*;
 import com.vuxiii.LR.Records.LRRule;
 import com.vuxiii.LR.Records.LRRuleIdentifier;
 import com.vuxiii.LR.Records.LRState;
@@ -37,7 +30,7 @@ public class LRParser{
         ParseTable table = getParserTable( g, start_state );
 
         
-
+        System.exit(-1);
         
         // ParserState ns = index.eat( Term.get( "x" ) );
         // if ( ns instanceof ParserStateError ) 
