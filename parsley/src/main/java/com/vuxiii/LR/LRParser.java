@@ -30,8 +30,6 @@ public class LRParser{
         ParseTable table = getParserTable( g, start_state );
 
         
-        System.exit(-1);
-        
         // ParserState ns = index.eat( Term.get( "x" ) );
         // if ( ns instanceof ParserStateError ) 
         //     System.out.println( ns.errorMsg );
