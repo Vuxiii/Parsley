@@ -20,7 +20,7 @@ import com.vuxiii.Utils.Utils;
 public class LRParser{
     
 
-    public static ParseTable parse( Grammar g, NonTerminal start ) {
+    public static ParseTable compile( Grammar g, NonTerminal start ) {
 
         LRState start_state = _computeState( g, start );
         
@@ -57,7 +57,7 @@ public class LRParser{
 
     }
 
-    public static ASTToken getAST( ParseTable table, List<ASTToken> tokens ) {
+    public static ASTToken parse( ParseTable table, List<ASTToken> tokens ) throws ParserException {
         List<ParserState> stack = new LinkedList<>();
         stack.add( table.getStartState() );
         ParsingStep currentStep = new ParsingStep(tokens, new LinkedList<>(), stack, new LinkedList<>(), table );
@@ -95,8 +95,6 @@ public class LRParser{
             LRState state = current.current_state; 
             visited.add( state.id );
 
-            // System.out.println( "Visiting\n" + state );
-
             // Set up the fails. The actual eatable will overwrite these.
             g.terms().forEach(   t -> current.addError( t, "The Term '" + t + "' Connot be accepted from the given state\n" + state ) );
             g.nonTerms().forEach(t -> current.addError( t, "The Term '" + t + "' Connot be accepted from the given state\n" + state ) );
@@ -112,29 +110,9 @@ public class LRParser{
     
                 ParserState move = new ParserState( to_state, t );
     
-                // System.out.println( "To state id: " + to_state.id );
-                
-                
-                // Here we can add whatever code we want. This will be executed when we move from one state to another.
-                // current.addMove( t, ( ParserState oldState ) -> { 
-                //     // We have access to 
-                //     //  * oldState  = fromState
-                //     //  * move      = toState 
-                //     //  * t         = usedTerm
-                    
-                //     // System.out.println( "Made move " + t + " from" );
-                //     // System.out.println( oldState.current_state );
-                //     // System.out.println( "And arrived at" );
-                //     // System.out.println( move.current_state );
-                //     return move; 
-                // } );
-
                 current.addMove( t, move );
 
                 if ( !visited.contains( to_state.id ) ) {
-                    // System.out.print( "Visited: [" );
-                    // visited.forEach( s -> System.out.print( s + " " ));
-                    // System.out.println("] doesn't contain state " + to_state.id);
                     queue.add( move );
                 }
             }
@@ -412,7 +390,7 @@ public class LRParser{
             // g.add_rule( R, List.of( eps ) ); 
             // g.add_rule( R, List.of( id, R ) ); 
     
-            LRParser.parse( g, S );
+            LRParser.compile( g, S );
 
     //         // +-------------------------------+
     //         // |State: 0                       |

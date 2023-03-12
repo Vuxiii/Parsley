@@ -69,7 +69,7 @@ public class ParsingStep {
      * This method takes a step in parsing
      * @return The next ParsingStep
      */
-    public ParsingStep step() {
+    public ParsingStep step() throws ParserException {
         // for ( ParserState state : table.states ) {
         //     System.out.println( "State: " + state.current_state.id );
         //     System.out.println( state.accepter.keySet() );
@@ -184,7 +184,8 @@ public class ParsingStep {
 
             Utils.log( "Current step of failure" );
             Utils.log( this.toString() );
-            System.exit(-1);
+
+            throw new ParserException( output, this, action );
         } else {
             Utils.log( "Wtf just happend....." );
             System.exit(-1);
