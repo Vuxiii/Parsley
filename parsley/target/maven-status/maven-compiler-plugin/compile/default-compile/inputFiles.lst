@@ -3,6 +3,7 @@
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ParseShift.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Terminal.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/Rule.java
+/home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/ParserException.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/LR/Records/ASTToken.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/App.java
 /home/william/Desktop/sdu/5sem/DM565_Formelle_sprog_og_data/Parsley/parsley/src/main/java/com/vuxiii/Visitor/VisitorBase.java

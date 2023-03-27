@@ -18,6 +18,7 @@ com/vuxiii/LR/Grammar.class
 com/vuxiii/LR/Records/ParseAction.class
 com/vuxiii/LR/ParsingStep.class
 com/vuxiii/Visitor/VisitorAcceptor.class
+com/vuxiii/LR/ParserException.class
 com/vuxiii/LR/Records/ParserState.class
 com/vuxiii/App.class
 com/vuxiii/LR/Records/Terminal.class
