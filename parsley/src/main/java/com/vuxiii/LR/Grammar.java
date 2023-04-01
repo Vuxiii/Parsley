@@ -25,6 +25,9 @@ import com.vuxiii.Utils.Utils;
 
 public class Grammar {
     
+    Map<LRRule, Set<Term>> first_cache = new HashMap<>();
+    Set<NonTerminal> nulls_cache = new HashSet<>();
+
     Map< NonTerminal, List<LRRule> > LRRules;
     // Map<String, Term> terms;
     List<LRState> state_cache;
@@ -88,33 +91,33 @@ public class Grammar {
     }
 
     private Set<NonTerminal> _get_nulls() { // do this once, return cached.
-        Set<NonTerminal> nulls = new HashSet<>();
+        if ( !nulls_cache.isEmpty() ) return nulls_cache;
 
         int size;
         do {
-            size = nulls.size();
+            size = nulls_cache.size();
 
             for ( NonTerminal N : LRRules.keySet() ) {
                 List<LRRule> rules_for_N = get_rule( N );
                 for ( LRRule rule : rules_for_N ) {
                     int i = 0;
 
-                    // Removes all the first NULLS.
+                    // Removes all the first nulls_cache.
                     while ( i < rule.size() && ((rule.terms.get( i ) instanceof Terminal && ((Terminal) rule.terms.get( i )).is_epsilon)
-                            || nulls.contains( rule.terms.get( i ) )) ) {
+                            || nulls_cache.contains( rule.terms.get( i ) )) ) {
                         ++i;
                     }  
                     
                     if ( i == rule.size() ) {
-                        nulls.add( N );
+                        nulls_cache.add( N );
                     }
                 }
             }
 
-        } while ( size != nulls.size() );
+        } while ( size != nulls_cache.size() );
         
 
-        return nulls;
+        return nulls_cache;
     }
 
     
@@ -178,7 +181,8 @@ public class Grammar {
     }
 
 
-    public Set<Term> get_firsts( LRRule rule, LRState state ) {
+    public Set<Term> get_firsts( LRRule rule ) {
+        if ( first_cache.containsKey( rule ) ) return first_cache.get( rule );
         Set<NonTerminal> nulls = _get_nulls();
         Map< NonTerminal, Set<Terminal> > firsts = _get_firsts( nulls );
         Set<Term> ts = new HashSet<>();

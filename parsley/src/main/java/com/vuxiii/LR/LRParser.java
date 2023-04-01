@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import com.vuxiii.LR.Records.LRRule;
 import com.vuxiii.LR.Records.LRRuleIdentifier;
 import com.vuxiii.LR.Records.LRState;
@@ -19,15 +20,28 @@ import com.vuxiii.Utils.Utils;
 
 public class LRParser{
     
+    public static void reset() {
+        ParsingStep.count = 0; // Reset
+        LRRule.count = 0;
+        LRState.count = 0;
+        Term.terms = new HashMap<>();
+        Settings.showParsingSteps = false;
+        Settings.showParsingTable = false;
+        Settings.showGrammar = false;
+    }
 
     public static ParseTable compile( Grammar g, NonTerminal start ) {
 
+        long s = System.currentTimeMillis();
+
         LRState start_state = _computeState( g, start );
+
+        System.out.println( "Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
         
         if ( Settings.showParsingSteps )
             _printStates( g, start_state, new HashSet<>() );
 
-        ParseTable table = getParserTable( g, start_state );
+        ParseTable table = getParserTable( g, start_state ); // 500 millis
 
         
         // ParserState ns = index.eat( Term.get( "x" ) );
@@ -53,6 +67,8 @@ public class LRParser{
         LRState.count = 0;
         Term.terms = new HashMap<>();
         // return start_state;
+
+
         return table;
 
     }
@@ -142,7 +158,7 @@ public class LRParser{
      * @param start The of the CFG
      * @return The start state
      */
-    private static  LRState _computeState( Grammar g, NonTerminal start ) {      
+    private static LRState _computeState( Grammar g, NonTerminal start ) {      
         
         LRState ste = new LRState();
 
@@ -151,7 +167,9 @@ public class LRParser{
             ste.add( start, r );
         }
 
+        long s = System.currentTimeMillis();
         _computeClosure( ste, g );
+        System.out.println( "Computing Closure Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
 
         // Cache the resulting state, so it can be used for loops.
         g.cache( ste );
@@ -159,7 +177,13 @@ public class LRParser{
         for ( Term move : ste.getMoves() ) {
             if ( move.equals( Rule.EOR ) ) continue;
             if ( move instanceof Terminal && ((Terminal) move).is_epsilon ) continue;
+            
+            s = System.currentTimeMillis();
             LRState ns = _computeState( ste, move, g );
+
+            System.out.println( "_computeState 2nd: " + (System.currentTimeMillis() - s) + " milliseconds!");
+
+
             g.cache( ns );
             ste.move_to_state.put( move, ns );
             
@@ -176,7 +200,7 @@ public class LRParser{
         // System.out.println( "\t\tBefore closure");
         // System.out.println( state );
         state.containedRules.forEach( r -> r.lock() );
-        List< NonTerminal > addQueue = new LinkedList<>();
+        LinkedList< NonTerminal > addQueue = new LinkedList<>();
         
         Map<Term, Set<Term> > getLookahead = new HashMap<>();
 
@@ -196,11 +220,14 @@ public class LRParser{
         Map<NonTerminal, Set<Term>> addedLookaheads = new HashMap<>();
         Map<NonTerminal, Set<LRRule>> addedRules = new HashMap<>();
 
+        long s = System.currentTimeMillis();
+
         // compute the closure
         while ( !addQueue.isEmpty() ) {
             NonTerminal X = addQueue.remove(0);
             List<LRRule> rules = state.get_rule( X );
             int size = rules.size();
+            
             for ( int i = 0; i < size; ++i ) {
                 LRRule rule = rules.get( i );
                 
@@ -212,7 +239,7 @@ public class LRParser{
                 
                 for ( LRRule r : g.get_rule( (NonTerminal) t ) ) {
                     
-                    Set<Term> ts = g.get_firsts( rule, state );
+                    Set<Term> ts = g.get_firsts( rule );
                     
                     // We need to check if r.get_dot_item is NonTerminal. 
                     // true -> We need to add whatever this has added to each other NEWLY added rule with the same X
@@ -235,6 +262,10 @@ public class LRParser{
                 }
             }
         }
+
+        long dt = (System.currentTimeMillis() - s);
+        if ( dt > 5 )
+            System.out.println( "Closure while loop: " + dt + " milliseconds!");
 
         addedLookaheads.forEach( (X, laheads) -> addedRules.get( X ).forEach( r -> r.lookahead.addAll( laheads ) ) ); // Might break...
 
