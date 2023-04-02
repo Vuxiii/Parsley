@@ -32,11 +32,11 @@ public class LRParser{
 
     public static ParseTable compile( Grammar g, NonTerminal start ) {
 
-        long s = System.currentTimeMillis();
+        // long s = System.currentTimeMillis();
 
         LRState start_state = _computeState( g, start );
 
-        System.out.println( "Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
+        // System.out.println( "Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
         
         if ( Settings.showParsingSteps )
             _printStates( g, start_state, new HashSet<>() );
@@ -167,9 +167,9 @@ public class LRParser{
             ste.add( start, r );
         }
 
-        long s = System.currentTimeMillis();
+        // long s = System.currentTimeMillis();
         _computeClosure( ste, g );
-        System.out.println( "Computing Closure Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
+        // System.out.println( "Computing Closure Took: " + (System.currentTimeMillis() - s) + " milliseconds!");
 
         // Cache the resulting state, so it can be used for loops.
         g.cache( ste );
@@ -178,10 +178,9 @@ public class LRParser{
             if ( move.equals( Rule.EOR ) ) continue;
             if ( move instanceof Terminal && ((Terminal) move).is_epsilon ) continue;
             
-            s = System.currentTimeMillis();
             LRState ns = _computeState( ste, move, g );
 
-            System.out.println( "_computeState 2nd: " + (System.currentTimeMillis() - s) + " milliseconds!");
+            // System.out.println( "_computeState 2nd: " + (System.currentTimeMillis() - s) + " milliseconds!");
 
 
             g.cache( ns );
@@ -220,7 +219,7 @@ public class LRParser{
         Map<NonTerminal, Set<Term>> addedLookaheads = new HashMap<>();
         Map<NonTerminal, Set<LRRule>> addedRules = new HashMap<>();
 
-        long s = System.currentTimeMillis();
+        // long s = System.currentTimeMillis();
 
         // compute the closure
         while ( !addQueue.isEmpty() ) {
@@ -263,9 +262,9 @@ public class LRParser{
             }
         }
 
-        long dt = (System.currentTimeMillis() - s);
-        if ( dt > 5 )
-            System.out.println( "Closure while loop: " + dt + " milliseconds!");
+        // long dt = (System.currentTimeMillis() - s);
+        // if ( dt > 5 )
+        //     System.out.println( "Closure while loop: " + dt + " milliseconds!");
 
         addedLookaheads.forEach( (X, laheads) -> addedRules.get( X ).forEach( r -> r.lookahead.addAll( laheads ) ) ); // Might break...
 
@@ -333,197 +332,5 @@ public class LRParser{
 
         return ste;
     }
-
-    /**
-     * Provides a sample CFG to be parsed
-     * 
-     */
-    public static void LRSample() {
-        // {
-        //     NonTerminal S = new NonTerminal( "S", true );
-        //     NonTerminal E = new NonTerminal( "E" );
-        //     NonTerminal T = new NonTerminal( "T" );
-    
-        //     Terminal dollar = new Terminal( "$" );
-        //     dollar.is_EOP = true;
-        //     Terminal plus = new Terminal( "+" );
-        //     Terminal x = new Terminal( "x" );
-    
-        //     Grammar g = new Grammar();
-    
-        //     g.add_rule( S, List.of( E, dollar ) );
-            
-        //     g.add_rule( E, List.of( T, plus, E ) );
-        //     g.add_rule( E, List.of( T ) );
-    
-        //     g.add_rule( T, List.of( x ) );
-    
-        //     LRParser.parse( g, S );
-        // }
-
-        // {
-        //     NonTerminal S_ = new NonTerminal( "S'", true );
-        //     NonTerminal S = new NonTerminal( "S" );
-    
-        //     Terminal dollar = new Terminal( "$" );
-        //     dollar.is_EOP = true;
-        //     Terminal x = new Terminal( "x" );
-        //     Terminal eps = new Terminal();
-    
-        //     Grammar g = new Grammar();
-    
-        //     g.add_rule( S_, List.of( S, dollar ) );
-            
-        //     g.add_rule( S, List.of( S, x ) );
-        //     g.add_rule( S, List.of( eps ) ); 
-    
-        //     LRParser.parse( g, S_ );
-        // }
-
-        // {
-        //     NonTerminal S_ = new NonTerminal( "S'", true );
-        //     NonTerminal S = new NonTerminal( "S" );
-    
-        //     Terminal dollar = new Terminal( "$" );
-        //     dollar.is_EOP = true;
-        //     Terminal x = new Terminal( "x" );
-        //     Terminal eps = new Terminal();
-    
-        //     Grammar g = new Grammar();
-    
-        //     g.add_rule( S_, List.of( S, dollar ) );
-            
-        //     g.add_rule( S, List.of( x, S ) );
-        //     g.add_rule( S, List.of( eps ) ); 
-    
-        //     LRParser.parse( g, S_ );
-        // }
-
-    //     { // Not valid LR!!!!!!!
-            NonTerminal S = new NonTerminal( "S", true );
-            NonTerminal G = new NonTerminal( "G" );
-            NonTerminal P = new NonTerminal( "P" );
-            NonTerminal R = new NonTerminal( "R" );
-    
-            Terminal dollar = new Terminal( "$" );
-            dollar.is_EOP = true;
-            Terminal id = new Terminal( "id" );
-            Terminal colon = new Terminal( ":" );
-            Terminal eps = new Terminal();
-    
-            Grammar g = new Grammar();
-    
-            // g.add_rule( S, List.of( G, dollar ) );
-            
-            // g.add_rule( G, List.of( P ) );
-            // g.add_rule( G, List.of( P, G ) );
-            // g.add_rule( P, List.of( id, colon, R ) );
-            // g.add_rule( R, List.of( eps ) ); 
-            // g.add_rule( R, List.of( id, R ) ); 
-    
-            LRParser.compile( g, S );
-
-    //         // +-------------------------------+
-    //         // |State: 0                       |
-    //         // +-------------------------------+
-    //         // |Rules     |Lookahead|Goto State|
-    //         // |----------+---------+----------|
-    //         // |S -> .G$  |[?]      |G: 11     |
-    //         // |----------+---------+----------|
-    //         // |G -> .P   |[$]      |P: 1      |
-    //         // |----------+---------+----------|
-    //         // |G -> .PG  |[$]      |P: 1      |
-    //         // |----------+---------+----------|
-    //         // |P -> .id:R|[$, G]   |id: 3     |
-    //         // +-------------------------------+
-    //         // +-------------------------------+
-    //         // |State: 1                       |
-    //         // +-------------------------------+
-    //         // |Rules     |Lookahead|Goto State|
-    //         // |----------+---------+----------|
-    //         // |G -> P.   |[$]      |None      |
-    //         // |----------+---------+----------|
-    //         // |G -> .P   |[$]      |P: 1      |
-    //         // |----------+---------+----------|
-    //         // |G -> P.G  |[$]      |G: 9      |
-    //         // |----------+---------+----------|
-    //         // |G -> .PG  |[$]      |P: 1      |
-    //         // |----------+---------+----------|
-    //         // |P -> .id:R|[$, G]   |id: 3     |
-    //         // +-------------------------------+
-    //         // It produces above states. However, shouldn't the last entry be id instead of G in lookahead
-    //         // The rest looks fine, only the lookaheads are wrong. 
-
-    //         // The table it produces is also wrong. It for some reason creates duplicate rows?
-    //         // +------------------------+
-    //         // |Parse-table             |
-    //         // +------------------------+
-    //         // |State|$ |: |id|P |R |G  |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |0    |  |  |s3|g1|  |g11|
-    //         // |-----+--+--+--+--+--+---|
-    //         // |1    |r1|  |s3|g1|  |g9 |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |3    |  |s4|  |  |  |   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |3    |  |s4|  |  |  |   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |4    |  |  |s6|  |g5|   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |4    |  |  |s6|  |g5|   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |5    |r3|  |  |  |  |r3 |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |5    |r3|  |  |  |  |r3 |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |6    |  |  |s6|  |g7|   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |6    |  |  |s6|  |g7|   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |7    |  |  |  |  |  |   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |7    |  |  |  |  |  |   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |9    |r2|  |  |  |  |   |
-    //         // |-----+--+--+--+--+--+---|
-    //         // |11   |a |  |  |  |  |   |
-    //         // +------------------------+
-        // }
-
-        // {
-        //     NonTerminal S = new NonTerminal( "S", true );
-        //     NonTerminal E = new NonTerminal( "E" );
-
-        //     Terminal dollar = new Terminal( "$" );
-        //     dollar.is_EOP = true;
-        //     Terminal plus = new Terminal( "+" );
-        //     Terminal id = new Terminal( "id" );
-        //     Terminal lparen = new Terminal( "(" );
-        //     Terminal rparen = new Terminal( ")" );
-            
-        //     Grammar g = new Grammar();
-    
-        //     g.add_rule( S, List.of( E, dollar ) );
-            
-        //     g.add_rule( E, List.of( id ) );
-        //     g.add_rule( E, List.of( id, lparen, E, rparen ) );
-        //     g.add_rule( E, List.of( E, plus, id ) );
-    
-        //     LRParser.parse( g, S );
-        // }
-    }
-
-    // https://serokell.io/blog/how-to-implement-lr1-parser
-    // For each position in the starting set, 
-    // if its locus contains a terminal or is empty, 
-    // no new positions are added to the state. 
-    // If it is a non-terminal, 
-    // then all starting positions of that terminal are added to the set, 
-    // with their lookahead set changed to the FIRST(Next), 
-    // where Next is the point that follows the locus in the position. 
-    // If nothing follows the locus, 
-    // the the lookahead set becomes FOLLOW(Entity) instead, 
-    // where Entity is the output non-terminal of the rule.
-
         
 }

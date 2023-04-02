@@ -1,11 +1,9 @@
 package com.vuxiii.LR.Records;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.vuxiii.Utils.*;
 
@@ -33,10 +31,8 @@ public class LRRule extends Rule {
     }
 
     public void lock() {
-        
         terms = Collections.unmodifiableList( terms );
         lookahead = Collections.unmodifiableSet( lookahead );
-        // Collectors.toList()
     }
 
     public Term get_dot_item() {
@@ -52,7 +48,6 @@ public class LRRule extends Rule {
         if ( !lookahead.containsAll( o.lookahead ) )    return false;
         if ( terms.size() != o.terms.size() )           return false;
         if ( !terms.containsAll( o.terms ) )            return false;
-
 
         return true;
     }
