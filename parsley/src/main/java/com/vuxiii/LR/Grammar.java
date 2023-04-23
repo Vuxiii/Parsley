@@ -1,5 +1,6 @@
 package com.vuxiii.LR;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import com.vuxiii.Utils.Utils;
 
 
 
-public class Grammar {
+public class Grammar implements Serializable {
     
     Map<LRRule, Set<Term>> first_cache = new HashMap<>();
     Set<NonTerminal> nulls_cache = new HashSet<>();

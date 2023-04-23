@@ -1,11 +1,12 @@
 package com.vuxiii.LR.Records;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 // import com.vuxiii.Regex.Token.Token;
 
-public class ParserState {
+public class ParserState implements Serializable {
     public final LRState current_state;
     // public Term accept;
 

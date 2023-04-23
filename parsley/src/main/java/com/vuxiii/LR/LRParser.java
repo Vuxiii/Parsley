@@ -81,7 +81,7 @@ public class LRParser{
     public static ParseTable load( String filename ) {
         try {
             // Create a FileInputStream object to read the serialized object from a file
-            FileInputStream fileInputStream = new FileInputStream("person.ser");
+            FileInputStream fileInputStream = new FileInputStream( filename );
 
             // Create an ObjectInputStream object to deserialize the object
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

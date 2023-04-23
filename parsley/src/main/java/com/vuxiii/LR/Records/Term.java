@@ -1,9 +1,10 @@
 package com.vuxiii.LR.Records;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Term {
+public class Term implements Serializable {
     public static Term QUESTION = new Term( "?" );
     public static Map<String, Term> terms = new HashMap<>();
 

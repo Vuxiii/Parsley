@@ -1,5 +1,6 @@
 package com.vuxiii.LR.Records;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Set;
 import com.vuxiii.Utils.*;
 
 
-public class LRState {
+public class LRState implements Serializable {
     public static int count = 0;
     
 

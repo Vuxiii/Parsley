@@ -1,5 +1,7 @@
 package com.vuxiii.LR.Records;
 
+import java.io.Serializable;
+
 public class NonTerminal extends Term {
     public final boolean is_start;
 
