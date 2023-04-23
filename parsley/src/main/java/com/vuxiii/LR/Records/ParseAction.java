@@ -1,5 +1,7 @@
 package com.vuxiii.LR.Records;
 
-public interface ParseAction {
+import java.io.Serializable;
+
+public interface ParseAction extends Serializable {
     
 }

@@ -3,6 +3,7 @@ package com.vuxiii.LR.Records;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Term implements Serializable {
     public static Term QUESTION = new Term( "?" );
@@ -25,14 +26,19 @@ public class Term implements Serializable {
         return (int) terms.values().parallelStream().filter( t -> !(t == Rule.EOP || t == Rule.EOR) ).count();
     }
 
-    // public boolean equals( Object other ) {
-    //     if ( other == null ) return false;
-    //     if ( !(other instanceof Term) ) return false;
-    //     Term o = (Term) other;
-    //     if ( !name.equals(o.name) ) return false;
+    @Override
+    public boolean equals( Object other ) {
+        if ( other == null ) return false;
+        if ( !(other instanceof Term) ) return false;
+        Term o = (Term) other;
+        if ( !name.equals(o.name) ) return false;
+        return true;
+    }
 
-    //     return true;
-    // }
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 
     public String toString() {
         return name;
