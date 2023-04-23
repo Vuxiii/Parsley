@@ -31,6 +31,8 @@ public class ParseTable implements Serializable {
 
     private List<Map<Term, ParseAction>> getAction;
 
+    public ParseTable() { states = new ArrayList<>(); g = null; getAction = new ArrayList<>(); }
+
     public ParseTable( Grammar g ) {
         states = new ArrayList<>();
         this.g = g;

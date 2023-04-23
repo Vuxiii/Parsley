@@ -15,6 +15,8 @@ public class NonTerminal extends Term {
         is_start = isStart;
     }
 
+    public NonTerminal() { is_start = false; }
+
     // public boolean equals( Object other ) {
     //     if ( other == null ) return false;
     //     if ( !(other instanceof NonTerminal) ) return false;

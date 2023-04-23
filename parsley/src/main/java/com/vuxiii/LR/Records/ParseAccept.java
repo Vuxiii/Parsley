@@ -19,6 +19,7 @@ public class ParseAccept implements ParseAction {
         this.reduceFunction = reduceFunction;
     }
 
+
     public ASTToken reduce( List<ASTToken> tokenParams ) {
         return reduceFunction.apply( tokenParams );
     }

@@ -5,5 +5,7 @@ public class ParserStateError extends ParserState {
     public ParserStateError(String errorMessage) {
         super( errorMessage );
     }
+
+    public ParserStateError() { super(""); }
     
 }

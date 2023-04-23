@@ -34,6 +34,8 @@ public class ParserState implements Serializable {
         accepter = new HashMap<>();
     }
 
+    public ParserState() { current_state = null; accepter = new HashMap<>(); isError = false; errorMsg = ""; }
+
     // public void addMove( Term t, Function<ParserState, ParserState> fun ) {
     //     // if ( current_state.id == 2 ) System.out.println( "ADDEDD " + t );
     //     // accepter.put( t, fun );

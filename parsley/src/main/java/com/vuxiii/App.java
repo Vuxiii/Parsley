@@ -1,6 +1,8 @@
 package com.vuxiii;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.function.Function;
 
 import com.vuxiii.LR.Grammar;
 import com.vuxiii.LR.LRParser;
@@ -27,6 +29,12 @@ public final class App {
         NonTerminal n = new NonTerminal("n");
         g.addRuleWithReduceFunction(n, List.of( n ), (ns) -> new Tok() );
         
+        ParseTable t = new ParseTable(g);
+
+        LRParser.save( "asd", t );
+
+        t = LRParser.load("asd");
+
     }
 
 }

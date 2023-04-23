@@ -245,8 +245,8 @@ public class Grammar implements Serializable {
         return reduceFunctions.get( ruleID );
     }
 
-    public void addRuleWithReduceFunction( NonTerminal key, List<Term> rule, Function<List<ASTToken>, ASTToken> func ) {
-        addReduceFunction( add_rule(key, rule).id, func );
+    public void addRuleWithReduceFunction( NonTerminal key, List<Term> rule, SerializableLambda<List<ASTToken>, ASTToken> func ) {
+        addReduceFunction( add_rule(key, rule).id, func);
     }
 
 }

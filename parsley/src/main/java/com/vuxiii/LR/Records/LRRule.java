@@ -31,6 +31,8 @@ public class LRRule extends Rule implements Serializable {
         this.X = X;
     }
 
+    public LRRule() { X = null; id = 0; dot = 0; }
+
     public void lock() {
         terms = Collections.unmodifiableList( terms );
         lookahead = Collections.unmodifiableSet( lookahead );

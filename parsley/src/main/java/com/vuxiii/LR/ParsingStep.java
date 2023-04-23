@@ -57,6 +57,8 @@ public class ParsingStep {
         id = count++;
     }
 
+    public ParsingStep() { input = null; tempInput = null; stack = null; reduceStack = null; table = null; }
+
     /**
      * When parsing is done, this method returns the result
      * @return The Token computed from the parsingsteps
