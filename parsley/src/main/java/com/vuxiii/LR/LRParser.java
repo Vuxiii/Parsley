@@ -1,5 +1,11 @@
 package com.vuxiii.LR;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -70,7 +76,48 @@ public class LRParser{
 
 
         return table;
+    }
 
+    public static ParseTable load( String filename ) {
+        try {
+            // Create a FileInputStream object to read the serialized object from a file
+            FileInputStream fileInputStream = new FileInputStream("person.ser");
+
+            // Create an ObjectInputStream object to deserialize the object
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            // Deserialize the object and cast it to its original type
+            ParseTable tbl = (ParseTable) objectInputStream.readObject();
+
+            // Close the input stream
+            objectInputStream.close();
+
+            return tbl;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void save( String filename, ParseTable tbl ) {
+        try {
+            // Create a FileOutputStream object to write the serialized object to a file
+            FileOutputStream fileOutputStream = new FileOutputStream( filename );
+
+            // Create an ObjectOutputStream object to serialize the object
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
+
+            // Write the object to the output stream
+            objectOutputStream.writeObject( tbl );
+
+            // Close the output stream
+            objectOutputStream.close();
+
+            // Confirm the object was serialized successfully
+            System.out.println("Person object serialized successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ASTToken parse( ParseTable table, List<ASTToken> tokens ) throws ParserException {

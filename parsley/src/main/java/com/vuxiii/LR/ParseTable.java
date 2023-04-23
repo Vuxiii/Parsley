@@ -1,5 +1,6 @@
 package com.vuxiii.LR;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import com.vuxiii.LR.Records.Terminal;
 import com.vuxiii.Utils.*;
 
 
-public class ParseTable {
+public class ParseTable implements Serializable {
     public final List<ParserState> states;
     public final Grammar g; 
 
